@@ -1,13 +1,16 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PortfolioPopup } from "@/components/PortfolioPopup";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
+      if (videoRef.current) {
+        videoRef.current.volume = 1.0; // Set volume to maximum
+      }
     }, 1000);
 
     return () => clearTimeout(timer);
@@ -31,6 +34,7 @@ const Index = () => {
         <div className={`video-container glass-panel transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
           <div className="video-wrapper">
             <video
+              ref={videoRef}
               className="w-full h-full object-cover"
               autoPlay
               loop
