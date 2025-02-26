@@ -1,0 +1,47 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-zinc-900 to-black min-h-screen text-white antialiased;
+  }
+}
+
+.video-container {
+  @apply relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl;
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper {
+  @apply absolute top-0 left-0 w-full h-full;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.video-wrapper video {
+  @apply w-full h-full transition-transform duration-300;
+}
+
+.video-wrapper:hover video {
+  transform: scale(1.02);
+}
+
+.glass-panel {
+  @apply bg-glass border border-glass-border backdrop-blur-md;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Custom video controls styling */
+video::-webkit-media-controls-panel {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)) !important;
+}
+
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-timeline {
+  @apply text-purple-500;
+}
